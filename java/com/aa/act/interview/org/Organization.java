@@ -1,6 +1,7 @@
 package com.aa.act.interview.org;
 
 import java.util.Optional;
+import java.util.Random; 
 
 public abstract class Organization {
 
@@ -21,7 +22,29 @@ public abstract class Organization {
 	 */
 	public Optional<Position> hire(Name person, String title) {
 		//your code here
-		return Optional.empty();
+		if (person == null || title == null) return Optional.empty();
+		
+		Optional<Position> searchedPosition = positionSearch(root, person, title);
+	}
+	
+	private Optional<Position> positionSearch (Poisition recursivePosition,Name person, String title) {
+		// Hire person if position is available
+	    if (recursivePosition.getTitle().equale(title)) return hirePerson(name, recursivePosition);
+		// Return empty if no position has that title
+	    if (recursivePosition.getDirectReports.isEmpty()) return Optional.empty();
+	    
+		// Drill down the position tree to find if the position exists
+	    for (Position currentPosition : recursivePosition.getDirectReports()) {
+	        Optional<Position> returnValue = positionSearch(currentPosition, person, title);
+	        if (returnValue.isPresent()) return returnValue; // Return results up the recursive hirearchy
+	    }
+	}
+	
+	private Optional<Position> hirePerson (Name person, Position position) {
+	    Random random = new Random(); // Generate employee ID
+		// Hire person
+	    position.setEmployee(Optional.of(new Employee(random.nextInt(256), person)));
+	    return Optional.of(position); 
 	}
 
 	@Override
