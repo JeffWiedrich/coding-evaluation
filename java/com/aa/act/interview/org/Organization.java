@@ -27,9 +27,9 @@ public abstract class Organization {
 		Optional<Position> searchedPosition = positionSearch(root, person, title);
 	}
 	
-	private Optional<Position> positionSearch (Poisition recursivePosition,Name person, String title) {
+	private Optional<Position> positionSearch (Position recursivePosition,Name person, String title) {
 		// Hire person if position is available
-	    if (recursivePosition.getTitle().equale(title)) return hirePerson(name, recursivePosition);
+	    if (recursivePosition.getTitle().equals(title)) return hirePerson(person, recursivePosition);
 		// Return empty if no position has that title
 	    if (recursivePosition.getDirectReports.isEmpty()) return Optional.empty();
 	    
