@@ -24,7 +24,7 @@ public abstract class Organization {
 		//your code here
 		if (person == null || title == null) return Optional.empty();
 		
-		Optional<Position> searchedPosition = positionSearch(root, person, title);
+		return positionSearch(root, person, title);
 	}
 	
 	private Optional<Position> positionSearch (Position recursivePosition,Name person, String title) {
